@@ -1,0 +1,17 @@
+
+Categoria
+_______________________________________
+
+INSERT INTO Categoria VALUES(1, "Congresso");
+INSERT INTO Categoria VALUES(2, "Simpósio");
+INSERT INTO Categoria VALUES(3, "Feira");
+INSERT INTO Categoria VALUES(4, "Semana Acadêmica");
+INSERT INTO Categoria VALUES(5, "Encontro");
+_______________________________________
+Evento
+_______________________________________
+
+INSERT INTO Evento VALUES(1, "Semana de TI", "Senai", "2017/09/13", "semanati@evento.br", 4);
+INSERT INTO Evento VALUES(2, "Simpósio de Eletrônica", "Senai", "2017/07/20", "Eletronica@teste.com.br", 2);
+INSERT INTO Evento VALUES(3, "Semana Acadêmica", "Faculdade Albert Einstein", "2017/05/31", "albert@einstein.com.br", 4);
+INSERT INTO Evento VALUES(4, "Feira Metal Mecânica", "Parque de Exposições", "2017/09/01", "metal@mecanica.com.br", 3);
