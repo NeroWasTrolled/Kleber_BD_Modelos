@@ -1,4 +1,6 @@
+3 – Inserir os dados nas tabelas de acordo com os dados abaixo:
 
+_______________________________________
 Categoria
 _______________________________________
 
@@ -15,3 +17,110 @@ INSERT INTO Evento VALUES(1, "Semana de TI", "Senai", "2017/09/13", "semanati@ev
 INSERT INTO Evento VALUES(2, "Simpósio de Eletrônica", "Senai", "2017/07/20", "Eletronica@teste.com.br", 2);
 INSERT INTO Evento VALUES(3, "Semana Acadêmica", "Faculdade Albert Einstein", "2017/05/31", "albert@einstein.com.br", 4);
 INSERT INTO Evento VALUES(4, "Feira Metal Mecânica", "Parque de Exposições", "2017/09/01", "metal@mecanica.com.br", 3);
+_______________________________________
+Tipo Inscrição
+_______________________________________
+
+INSERT INTO Tipo_Inscricao VALUES(1, 1, 80);
+INSERT INTO Tipo_Inscricao VALUES(2, 1, 98);
+INSERT INTO Tipo_Inscricao VALUES(3, 2, 30);
+INSERT INTO Tipo_Inscricao VALUES(4, 2, 40);
+INSERT INTO Tipo_Inscricao VALUES(5, 3, 150);
+INSERT INTO Tipo_Inscricao VALUES(6, 3, 180);
+INSERT INTO Tipo_Inscricao VALUES(7, 4, 90);
+INSERT INTO Tipo_Inscricao VALUES(8, 4, 140);
+
+_______________________________________
+4 – Inserir 10 registros nas tabelas participante e participante_inscricao. (O campo situação deve contar os valores “ABERTO”, “PAGO” ou “CANCELADO”)
+_______________________________________
+Participante
+_______________________________________
+
+INSERT INTO participante VALUES(1, "Gabriel", "Rua Agostinho dos Santos", 955, "Jardim Leblon", "Maringá", "Pr", "gabrielfrancasimoes@gmail.com");
+INSERT INTO participante VALUES(2, "Lucas", "Rua das Morangueiras", 122, "Jardim França", "Maringá", "Pr", "lucasvasquez@gmail.com");
+INSERT INTO participante VALUES(3, "Marcos", "Rua das Babosas", 44, "Jardim Vila Operária", "Maringá", "Pr", "MarcosOrelho@gmail.com");
+INSERT INTO participante VALUES(4, "Geovanna", "Alameda Antônio Andrade", 67, "Colina Verde", "Maringá", "Pr", "GeovannaRodrigues@gmail.com");
+INSERT INTO participante VALUES(5, "Candace", "Alameda Doutor João Paulino", 223, "Jardim Dias", "Maringá", "Pr", "Candace007@gmail.com");
+INSERT INTO participante VALUES(6, "Jorge", "Avenida Pinguim", 506, "Conjunto Ângelo Planas", "Maringá", "Pr", "JorginhoGameplays@gmail.com");
+INSERT INTO participante VALUES(7, "Julinho Gameplays", "Avenida Sophia Rasgulaeff", 37, "Vila Santo Antônio.", "Maringá", "Pr", "JulinhoMatadorDeOnça@gmail.com");
+INSERT INTO participante VALUES(8, "Ferdinanda", "Avenida Riachuelo", 154, "Jardim Anchieta", "Maringá", "Pr", "FerdinandaZoi@gmail.com");
+INSERT INTO participante VALUES(9, "Mocoquinha", "Avenida Rio Branco", 222, "Vila Bosque", "Maringá", "Pr", "MocoquinhaToddy@gmail.com");
+INSERT INTO participante VALUES(10, "Júlio Ceasar", "Avenida Palmeiras", 51, "Mundial", "Maringá", "Pr", "JúlioCeasar@gmail.com");
+
+_______________________________________
+Participante Inscrição
+_______________________________________
+
+INSERT INTO participante_inscricao VALUES(1, 1, 1, "ABERTO", "2017/09/15");
+INSERT INTO participante_inscricao VALUES(1, 1, 1, "ABERTO", "2017/09/15");
+INSERT INTO participante_inscricao VALUES(2, 3, 2, "PAGO", "2017/09/03");
+INSERT INTO participante_inscricao VALUES(3, 5, 1, "CANCELADO", "2017/09/28");
+INSERT INTO participante_inscricao VALUES(4, 7, 3, "CANCELADO", "2017/03/01");
+INSERT INTO participante_inscricao VALUES(5, 2, 1, "ABERTO", "2017/07/22");
+INSERT INTO participante_inscricao VALUES(6, 10, 1, "PAGO", "2017/12/02");
+INSERT INTO participante_inscricao VALUES(7, 4, 3, "ABERTO", "2017/03/06");
+INSERT INTO participante_inscricao VALUES(8, 2, 2, "PAGO", "2017/11/12");
+INSERT INTO participante_inscricao VALUES(9, 2, 1, "PAGO", "2017/09/07");
+INSERT INTO participante_inscricao VALUES(10, 6, 2, "CANCELADO", "2017/05/17");
+
+_______________________________________
+5 – Inserir 2 registros na tabela eventos
+_______________________________________
+Evento
+_______________________________________
+
+INSERT INTO Evento VALUES(5, "Semana de Eletromecanica", "Senai", "2017/09/28", "semanati@evento.br", 3);
+INSERT INTO Evento VALUES(6, "Feira de Exposição", "Senai", "2017/03/17", "Feiradeexposicao@teste.com.br", 2);
+
+
+_______________________________________
+6 – Listar o nome, e-mail, endereço do participante e o nome do evento em que ele realizou inscrição.
+_______________________________________
+
+
+_______________________________________
+7 – Listar o nome do evento, data da realização, local e o nome do tipo do evento.
+_______________________________________
+
+
+_______________________________________
+8 – Listar todos os tipos de evento que não possuem um evento cadastrado.
+_______________________________________
+
+
+_______________________________________
+9 – Listar todos os eventos que são do tipo “ENCONTRO”
+_______________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
