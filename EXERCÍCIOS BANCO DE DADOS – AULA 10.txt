@@ -1,0 +1,168 @@
+------------------------------------------------------------------------
+1. LISTAR O NOME DO FUNCIONÁRIO E O NOME DO GERENTE
+------------------------------------------------------------------------
+SELECT CONCAT(e.first_name, ' ', e.last_name) AS funcionario, CONCAT(m.first_name, ' ', m.last_name) AS gerente
+FROM employees e
+LEFT JOIN employees m ON e.manager_id = m.employee_id;
+
+------------------------------------------------------------------------
+2. LISTAR O NOME DO FUNCIONÁRIO E O NOME DO DEPARTAMENTO
+------------------------------------------------------------------------
+SELECT e.first_name, e.last_name, d.department_name
+FROM employees e
+LEFT JOIN departments d ON e.department_id = d.department_id;
+
+------------------------------------------------------------------------
+3. LISTAR TODOS OS FUNCIONÁRIOS QUE NÃO POSSUEM GERENTE
+------------------------------------------------------------------------
+SELECT e.employee_id, e.first_name, e.last_name, e.job_id, e.department_id
+FROM employees e
+LEFT JOIN employees m ON e.manager_id = m.employee_id
+WHERE m.employee_id IS NULL;
+
+------------------------------------------------------------------------
+4. LISTAR O NOME DO DEPARTAMENTO DE TODOS OS FUNCIONÁRIOS QUE NÃO 
+POSSUEM GERENTE
+------------------------------------------------------------------------
+SELECT d.department_name
+FROM departments d
+LEFT JOIN employees e ON d.manager_id = e.employee_id
+WHERE e.employee_id IS NULL;
+
+------------------------------------------------------------------------
+5. LISTAR TODOS OS FUNCIONÁRIOS QUE NÃO POSSUEM REGISTRO NA TABELA 
+JOB_HISTORY, OU SEJA FUNCIONÁRIOS QUE ESTÃO TRABALHANDO.
+------------------------------------------------------------------------
+SELECT e.employee_id, e.first_name, e.last_name
+FROM employees e
+LEFT JOIN job_history j ON e.employee_id = j.employee_id
+WHERE j.employee_id IS NULL;
+
+------------------------------------------------------------------------
+6. LISTAR TODOS OS DEPARTAMENTOS E O NOME DE SEU GERENTE
+------------------------------------------------------------------------
+SELECT d.department_name, CONCAT(e.first_name, ' ', e.last_name) AS manager_name
+FROM departments d
+LEFT JOIN employees e ON d.manager_id = e.employee_id;
+
+------------------------------------------------------------------------
+7. LISTAR TODOS OS DEPARTAMENTOS QUE NÃO POSSUEM GERENTE
+------------------------------------------------------------------------
+SELECT department_id, department_name
+FROM departments
+WHERE manager_id IS NULL;
+
+------------------------------------------------------------------------
+8. LISTAR TODOS OS FUNCIONARIOS QUE POSSUEM SALARIO ENTRE 5.000 E 10.000
+------------------------------------------------------------------------
+SELECT * FROM employees WHERE salary BETWEEN 5000 AND 10000;
+
+------------------------------------------------------------------------
+9. LISTAR O NOME DO DEPARTAMENTO, NOME DO GERENTE E OS LOCAIS (LOCATIONS)
+------------------------------------------------------------------------
+SELECT d.department_name, CONCAT(e.first_name, ' ', e.last_name) AS manager_name, l.city AS location
+FROM departments d
+LEFT JOIN employees e ON d.manager_id = e.employee_id
+LEFT JOIN locations l ON d.location_id = l.location_id;
+
+------------------------------------------------------------------------
+10. LISTAR TODOS OS LOCAIS QUE NÃO POSSUEM NENHUM DEPARTAMENTO
+------------------------------------------------------------------------
+SELECT l.location_id, l.street_address, l.postal_code, l.city, l.state_province, c.country_name
+FROM locations l
+LEFT JOIN departments d ON l.location_id = d.location_id
+JOIN countries c ON l.country_id = c.country_id
+WHERE d.location_id IS NULL;
+
+------------------------------------------------------------------------
+11. LISTAR TODOS OS PAISES QUE NÃO POSSUEM NENHUM LOCAL
+------------------------------------------------------------------------
+SELECT c.country_id, c.country_name
+FROM countries c
+LEFT JOIN locations l ON c.country_id = l.country_id
+WHERE l.location_id IS NULL;
+
+------------------------------------------------------------------------
+12. LISTAR TODOS OS DEPARTAMENTOS QUE NÃO POSSUEM NENHUM FUNCIONÁRIO
+------------------------------------------------------------------------
+SELECT d.department_id, d.department_name
+FROM departments d
+LEFT JOIN employees e ON d.department_id = e.department_id
+WHERE e.department_id IS NULL;
+
+------------------------------------------------------------------------
+13. LISTAR TODOS OS DEPARTAMENTOS E SEUS PAÍSES
+------------------------------------------------------------------------
+SELECT 
+    d.department_name AS Departamento,
+    l.street_address AS Endereço,
+    c.country_name AS País
+FROM departments d
+JOIN locations l ON d.location_id = l.location_id
+JOIN countries c ON l.country_id = c.country_id;
+
+------------------------------------------------------------------------
+14. LISTAR TODOS OS FUNCIONÁRIOS E SUAS RESPECTIVAS REGIÕES
+------------------------------------------------------------------------
+SELECT e.employee_id, e.first_name, e.last_name, c.country_name, r.region_name
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+JOIN locations l ON d.location_id = l.location_id
+JOIN countries c ON l.country_id = c.country_id
+JOIN regions r ON c.region_id = r.region_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
