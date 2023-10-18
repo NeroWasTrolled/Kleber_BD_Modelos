@@ -72,11 +72,12 @@ _______________________________________
 INSERT INTO Evento VALUES(5, "Semana de Eletromecanica", "Senai", "2017/09/28", "semanati@evento.br", 3);
 INSERT INTO Evento VALUES(6, "Feira de Exposição", "Senai", "2017/03/17", "Feiradeexposicao@teste.com.br", 2);
 
-
 _______________________________________
 6 – Listar o nome, e-mail, endereço do participante e o nome do evento em que ele realizou inscrição.
 _______________________________________
 
+SELECT nome_participante, email, logradouro, evento.nome_evento
+FROM participante, evento
 
 _______________________________________
 7 – Listar o nome do evento, data da realização, local e o nome do tipo do evento.
