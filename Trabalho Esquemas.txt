@@ -76,43 +76,145 @@ _______________________________________
 6 – Listar o nome, e-mail, endereço do participante e o nome do evento em que ele realizou inscrição.
 _______________________________________
 
-SELECT nome_participante, email, logradouro, evento.nome_evento
-FROM participante, evento
+SELECT 
+    participante.nome_participante,
+    participante.email,
+    participante.logradouro,
+    participante.numero,
+    participante.bairro,
+    participante.cidade,
+    participante.estado,
+    evento.nome_evento AS evento
+FROM 
+    participante,
+    participante_inscricao,
+    tipo_inscricao,
+    evento
+WHERE 
+    participante.codigo_participante = participante_inscricao.codigo_participante AND
+    participante_inscricao.codigo_tipo = tipo_inscricao.codigo_tipo AND
+    tipo_inscricao.Evento_codigo = evento.codigo;
 
 _______________________________________
 7 – Listar o nome do evento, data da realização, local e o nome do tipo do evento.
 _______________________________________
 
+SELECT 
+    evento.nome_evento,
+    evento.data_evento,
+    evento.local_evento,
+    tipo_inscricao.valor_tipo AS nome_tipo_evento
+FROM 
+    evento,
+    tipo_inscricao
+WHERE 
+    evento.codigo = tipo_inscricao.Evento_codigo;
 
 _______________________________________
 8 – Listar todos os tipos de evento que não possuem um evento cadastrado.
 _______________________________________
 
+SELECT 
+    tipo_inscricao.codigo_tipo,
+    tipo_inscricao.valor_tipo AS nome_tipo_evento
+FROM 
+    tipo_inscricao
+LEFT JOIN 
+    evento ON tipo_inscricao.codigo_tipo = evento.codigo_categoria
+WHERE 
+    evento.codigo IS NULL;
 
 _______________________________________
 9 – Listar todos os eventos que são do tipo “ENCONTRO”
 _______________________________________
 
 
+_______________________________________
+10 – Listar todos os participantes do evento “Semana de TI” que estão com a situação PAGO
+_______________________________________
+
+SELECT 
+    participante.nome_participante,
+    participante.email
+FROM 
+    participante
+JOIN 
+    participante_inscricao ON participante.codigo_participante = participante_inscricao.codigo_participante
+JOIN 
+    tipo_inscricao ON participante_inscricao.codigo_tipo = tipo_inscricao.codigo_tipo
+JOIN 
+    evento ON tipo_inscricao.Evento_codigo = evento.codigo
+WHERE 
+    evento.nome_evento = 'Semana de TI'
+    AND participante_inscricao.situacao = 'PAGO';
+
+_______________________________________
+11 – Listar a quantidade de inscritos por evento cuja situação da inscrição não seja CANCELADA
+_______________________________________
+
+SELECT 
+    evento.nome_evento,
+    tipo_inscricao.valor_tipo AS tipo_evento,
+    participante_inscricao.situacao AS situacao_inscricao
+FROM 
+    evento,
+    tipo_inscricao,
+    participante_inscricao
+WHERE 
+    evento.codigo = tipo_inscricao.Evento_codigo
+    AND tipo_inscricao.codigo_tipo = participante_inscricao.codigo_tipo
+    AND participante_inscricao.situacao <> 'CANCELADO';
+
+_______________________________________
+12 – Listar o valor total (SOMA) de todas as inscrições
+_______________________________________
+
+SELECT 
+    tipo_inscricao.valor_tipo AS valor_da_inscricao
+FROM 
+    participante_inscricao
+JOIN 
+    tipo_inscricao ON participante_inscricao.codigo_tipo = tipo_inscricao.codigo_tipo
+WHERE 
+    participante_inscricao.situacao <> 'CANCELADO';
+
+_______________________________________
+13 – Listar a quantidade de inscritos por tipo de evento
+_______________________________________
+
+USE seu_banco_de_dados;
+
+SELECT 
+    ti.valor_tipo AS tipo_evento,
+    pi.situacao AS situacao_inscricao
+FROM 
+    participante_inscricao pi
+JOIN 
+    tipo_inscricao ti ON pi.codigo_tipo = ti.codigo_tipo
+WHERE 
+    pi.situacao <> 'CANCELADO';
+
+_______________________________________
+14 – Listar o evento que será realizado na maior data e o que será realizado na menor data
+_______________________________________
 
 
 
+_______________________________________
+15 – Listar o nome do participante e o valor pago na inscrição.
+_______________________________________
 
 
 
+_______________________________________
+16 – Listar o total de inscrições por situação.
+_______________________________________
 
 
 
-
-
-
-
-
-
-
-
-
-
+_______________________________________
+17 – Listar a quantidade de eventos por tipo.
+_______________________________________
 
 
 
