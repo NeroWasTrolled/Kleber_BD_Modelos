@@ -1,0 +1,51 @@
+SUBSELECT
+______________________________________________________________________________________
+
+select * from hr.employees e
+where e.department_id = (select department_id
+						from hr.departments d
+                        where upper(d.department_name) = 'sales')
+order by e.employee_id;
+
+SELECT
+	E.EMPLOYEE_ID,
+    E.FIRST_NAME || '' || E.LAST_NAME AS NOME_FUNCIONARIO,
+    E.MANAGER_ID,
+    (SELECT M.FIRST_NAME || '' || M.LAST_NAME
+    FROM HR.EMPLOYEES M
+    WHERE E.MANAGER_ID = M.EMPLOYEE_ID) AS NOME_MANAGER
+FROM HR.EMPLOYEES E
+WHERE ( E.DEPARTMENT_ID, E.LAST_NAME ) IN 
+	(SELECT M2.DEPARTMENT_ID,
+    M2.LAST_NAME
+    FROM HR.EMPLOYEES M2
+    WHERE E.MANAGER_ID = M2.EMPLOYEE_ID )
+ORDER BY E.EMPLOYEE_ID; 
+______________________________________________________________________________________
+select first_name, last_name, salary
+from employees
+where salary>(select avg(salary) from employees);
+______________________________________________________________________________________
+select concat(first_name, ' ', last_name) as nome, salary,
+(select avg(salary) from employees) as media
+from employees
+where salary>(select avg(salary) from employees)
+group by media;
+______________________________________________________________________________________
+select first_name, last_name, job_id
+from employees
+where job_id = (select job_id from employees where first_name = "Curtis" and last_name = "Davies");
+______________________________________________________________________________________
+select * from employees;
+
+SELECT l.street_address, d.department_name, d.department_id
+FROM departments d
+JOIN locations l ON d.location_id = l.location_id
+WHERE d.manager_id = (SELECT employee_id FROM employees WHERE first_name = 'Steven' AND last_name = 'King');
+______________________________________________________________________________________
+select first_name, last_name, hire_date
+from employees
+where hire_date > (select max(hire_date)
+					from employees where department_id = (select department_id
+														from departments where department_name = "IT"));
+
