@@ -97,7 +97,12 @@ _______________________________________________________
 9-
 _______________________________________________________
 
-
+select l.country_id, count (e.employee_id)from employees e
+inner join departments d
+on e.department_id=d.department_id
+inner join locations l
+on d.location_id id =l.location_id
+group by l.country_id; 
 
 
 
