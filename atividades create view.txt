@@ -1,0 +1,104 @@
+1-
+_______________________________________________________
+
+select e1.employee_id, e1.first_name as nome, d.department_name 
+as departamento, 
+(select e2.first_name from employees e2
+where e1.manager_id=e2.employee_id) as gerente
+from employees e1, departments d
+where e1.manager_id is not null
+group by e1.employee_id;
+_______________________________________________________
+_______________________________________________________
+2-
+_______________________________________________________
+
+select department_name
+from departments d
+where not exists(select 1
+from employees e1
+where e1.department_id = d.department_id);
+
+_______________________________________________________
+_______________________________________________________
+3-
+_______________________________________________________
+
+PULOU
+_______________________________________________________
+_______________________________________________________
+4-
+_______________________________________________________
+
+create view paise_locais as
+select c.country_id as id, c.country_name,
+l.*
+from countries c, locations l
+where c.country_id=l.country_id;
+
+_______________________________________________________
+_______________________________________________________
+5-
+_______________________________________________________
+
+select concat(e.first_name, e.last_name)
+as funcionario, l.*
+from employees e, locations l, departments d
+where e.department_id=d.department_id
+and d.location_id=l.location_id;
+
+_______________________________________________________
+_______________________________________________________
+6-
+_______________________________________________________
+
+select avg(salary)
+from employees;
+
+create or replace view mediasalarial as
+select concat(e1.first_name, ' ', e1.last_name) as funcionario,
+e1.salary
+from employees e1
+where e1.salary > (select avg(e2.salary) from employees e2);
+
+_______________________________________________________
+_______________________________________________________
+7-
+_______________________________________________________
+
+select d.department_name, count(e1.employee_id) as total_dp,
+(select count(e2.employee_id) from employees e2) as total
+from employees e1, departments d
+where e1.department_id=d.department_id
+group by d.department_name;
+
+_______________________________________________________
+_______________________________________________________
+8-
+_______________________________________________________
+
+select j.job_title
+from jobs j, job_history jh, employees e
+where e.job_id=jh.job_id
+and jh.job_id=j.job_id
+and e.employee_id not in
+(select jh2.employee_id from job_history jh2)
+group by j.job_title;
+______________________________________________________
+from jobs j2
+where j2.job_id not in
+(select j.job_id
+from jobs join
+inner join job_history jh
+on j.job_id=jh.job_id);
+
+_______________________________________________________
+_______________________________________________________
+9-
+_______________________________________________________
+
+
+
+
+
+
