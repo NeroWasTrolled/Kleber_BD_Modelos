@@ -1,0 +1,21 @@
+- CRIAR UM USUARIO LOCAL HOST (COMUM) -
+
+create user 'gabriel'@'localhost'
+identified by '03102006';
+
+- VISUALIZAR USUÁRIOS -
+
+select * from mysql.user;
+
+- CONCEDER PRIVILEGIOS AO USUARIO -
+
+grant all privileges on *.* to 'gabriel'@'localhost';
+
+- GERENCIAMENTO DE USUARIOS -
+
+REVOKE all privileges on *.* from
+'gabriel'@'localhost';
+
+- DROPAR O USUARIO -
+
+drop user 'gabriel'@'localhost';
