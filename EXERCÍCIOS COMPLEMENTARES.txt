@@ -1,0 +1,39 @@
+LOAD DATA INFILE 'C:/Users/Aluno/Desktop/load/megasena.csv' 
+INTO TABLE sorteios 
+FIELDS TERMINATED BY ';' 
+LINES TERMINATED BY '\n';
+
+show global variables like 'local_infile';
+
+set global local_infile = 1;
+
+select * from sorteios;
+
+SELECT * FROM sorteios WHERE concurso = 20;
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------
+c) O número 16 foi sorteado mais vezes em qual dezena;
+--------------------------------------------------------------------------------------
+
+select (select count(concurso) from sorteios where primeiro = 16) as primeiro,
+(select count(concurso) from sorteios where segundo = 16) as segundo,
+(select count(concurso) from sorteios where terceiro = 16) as terceiro,
+(select count(concurso) from sorteios where quarto = 16) as quarto,
+(select count(concurso) from sorteios where quinto = 16) as quinto,
+(select count(concurso) from sorteios where sexto = 16) as sexto
+from sorteios;
+
+
+select primeiro, count(primeiro) as repetidos from sorteios group by
+primeiro order by repetidos asc;
+select * from sorteios group by primeiro
