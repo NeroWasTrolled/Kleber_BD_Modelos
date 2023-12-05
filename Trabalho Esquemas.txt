@@ -1,3 +1,11 @@
+_______________________________________
+2 – Alterar o nome da coluna endereço da tabela Participante para ‘logradouro’
+_______________________________________
+
+ALTER TABLE participante
+CHANGE COLUMN endereco logradouro varchar(100) DEFAULT NULL;
+
+_______________________________________
 3 – Inserir os dados nas tabelas de acordo com os dados abaixo:
 
 _______________________________________
@@ -128,7 +136,11 @@ _______________________________________
 9 – Listar todos os eventos que são do tipo “ENCONTRO”
 _______________________________________
 
-
+SELECT e.*
+FROM evento e
+JOIN tipo_inscricao ti ON e.codigo = ti.Evento_codigo
+JOIN participante_inscricao pi ON ti.codigo_tipo = pi.codigo_tipo
+WHERE ti.codigo_tipo = 5;
 _______________________________________
 10 – Listar todos os participantes do evento “Semana de TI” que estão com a situação PAGO
 _______________________________________
@@ -198,27 +210,76 @@ _______________________________________
 14 – Listar o evento que será realizado na maior data e o que será realizado na menor data
 _______________________________________
 
+SELECT *
+FROM evento
+ORDER BY data_evento DESC
+LIMIT 1;
 
+SELECT *
+FROM evento
+ORDER BY data_evento ASC
+LIMIT 1;
 
 _______________________________________
 15 – Listar o nome do participante e o valor pago na inscrição.
 _______________________________________
 
-
+SELECT p.nome_participante, ti.valor_tipo AS valor_pago
+FROM participante p
+JOIN participante_inscricao pi ON p.codigo_participante = pi.codigo_participante
+JOIN tipo_inscricao ti ON pi.codigo_tipo = ti.codigo_tipo
+WHERE pi.situacao = 'PAGO';
 
 _______________________________________
 16 – Listar o total de inscrições por situação.
 _______________________________________
 
-
+SELECT situacao, COUNT(*) AS total_inscricoes
+FROM participante_inscricao
+GROUP BY situacao;
 
 _______________________________________
 17 – Listar a quantidade de eventos por tipo.
 _______________________________________
 
+SELECT c.descricao AS tipo_evento, COUNT(*) AS quantidade_eventos
+FROM evento e
+JOIN categoria c ON e.codigo_categoria = c.codigo_categoria
+GROUP BY c.descricao;
 
+_______________________________________
+18 – Listar os eventos que não possuem participantes inscritos
+_______________________________________
 
+SELECT e.*
+FROM evento e
+LEFT JOIN participante_inscricao pi ON e.codigo = pi.Evento_codigo
+WHERE pi.codigo_tipo IS NULL;
 
+_______________________________________
+19 – Listar os participantes que não estão inscritos em nenhum evento
+_______________________________________
+
+SELECT p.*
+FROM participante p
+LEFT JOIN participante_inscricao pi ON p.codigo_participante = pi.codigo_participante
+WHERE pi.codigo_tipo IS NULL;
+
+_______________________________________
+20 – Listar o nome do participante o e-mail das inscrições pagas
+_______________________________________
+
+SELECT p.nome_participante, p.email
+FROM participante p
+JOIN participante_inscricao pi ON p.codigo_participante = pi.codigo_participante
+WHERE pi.situacao = 'PAGO';
+
+_______________________________________
+21 – Alterar o nome da coluna “SITUACAO” para “STATUS” da tabela participante_inscricao
+_______________________________________
+
+ALTER TABLE participante_inscricao
+CHANGE COLUMN situacao status varchar(45) DEFAULT NULL;
 
 
 
