@@ -253,8 +253,8 @@ _______________________________________
 
 SELECT e.*
 FROM evento e
-LEFT JOIN participante_inscricao pi ON e.codigo = pi.Evento_codigo
-WHERE pi.codigo_tipo IS NULL;
+LEFT JOIN participante_inscricao pi ON e.codigo = pi.codigo_tipo
+WHERE pi.cod_part_insc IS NULL;
 
 _______________________________________
 19 – Listar os participantes que não estão inscritos em nenhum evento
