@@ -1,0 +1,111 @@
+delimiter $
+create function palavra (texto char(20)) returns char(50)
+return concat("Você digitou: ", texto);
+
+select palavra('pindamonhangaba');
+
+create table notas(aluno varchar(10), nota1 int, nota2 int, nota3 int, nota4 int);
+
+insert into notas values('Maria', 10, 9, 10, 10);
+insert into notas values('Pedro', 5, 2, 3, 4);
+
+delimiter $
+create function media(nome varchar(10))
+returns float
+deterministic
+begin 
+	declare n1, n2, n3, n4 int;
+    declare med float;
+    select nota1, nota2, nota3, nota4 into n1,n2,n3,n4
+    from notas where aluno=nome;
+    set med= (n1+n2+n3+n4)/4;
+    return med;
+end$
+
+delimiter $
+
+create function maiorSalario(job varchar(50)) 
+returns decimal(10, 2)
+begin
+    declare salario decimal(10, 2);
+
+    select max(salary) INTO salario
+    FROM employees
+    WHERE job_id=job;
+
+    RETURN salario;
+end$
+
+delimiter $
+
+create function mediaSalario(job varchar(50)) 
+returns decimal(10, 2)
+deterministic
+begin
+    declare salario decimal(10, 2);
+    select avg(salary) INTO salario
+    FROM employees
+    WHERE job_id=job;
+    RETURN salario;
+end$
+
+delimiter $
+
+create function quantidade(gerente int) 
+returns int
+begin
+    declare quantidade int;
+    select count(employee_id) into quantidade
+    from employees
+    where manager_id=gerente;
+    return quantidade;
+end$
+
+delimiter $
+
+create function quantidadedept(dept int) 
+returns int
+begin
+    declare quantidade int;
+    select count(employee_id) into quantidade
+    from employees
+    where department_id=dept;
+    return quantidade;
+end$
+
+delimiter $
+
+create function somaSalario(dept int) 
+returns int
+begin
+    declare salario decimal(10,2);
+    select sum(salary) into salario
+    from employees
+    where department_id=dept;
+    return salario;
+end$
+
+delimiter $
+
+create function mediasalariodept(dept int) 
+returns int
+begin
+    declare salario decimal(10,2);
+    select max(salary)*1.1 into salario
+    from employees
+    where department_id=dept;
+    return salario;
+end$
+
+delimiter $
+
+create function maiorjob ()
+returns varchar(50)
+begin
+	declare job varchar(255);
+    select job_id into job
+    from employees
+    order by job_id desc
+    limit 1;
+    return job;
+end$
